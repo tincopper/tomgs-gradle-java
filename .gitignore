@@ -33,8 +33,9 @@ classes/
 buildSrc/build
 /spring-*/build
 /src/asciidoc/build
-*/build
-*/buildOutputCleanup
+**/build/
+**/buildOutputCleanup/
+
 target/
 /executions
 
