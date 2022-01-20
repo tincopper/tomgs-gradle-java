@@ -1,0 +1,15 @@
+plugins {
+    // 预编译脚本插件 需要引入的插件
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    // 在预编译脚本插件中应用外部插件
+    implementation 'com.bmuschko:gradle-docker-plugin:6.4.0'
+}

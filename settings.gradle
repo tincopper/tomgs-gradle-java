@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        maven {
+            url = uri('D:\\MavenRepository')
+        }
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+
+rootProject.name = 'tomgs-gradle-java'
+include 'gradle-plugin-sample'
+include 'gradle-plugin-sample:hello-gradle-plugin'
+findProject(':gradle-plugin-sample:hello-gradle-plugin')?.name = 'hello-gradle-plugin'
+include 'custom-plugin-test'
+

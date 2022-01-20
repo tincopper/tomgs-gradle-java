@@ -1,0 +1,55 @@
+plugins {
+    // 引入gradle插件扩展接口
+    id 'java-gradle-plugin'
+    // 用于发布插件
+    id 'maven-publish'
+}
+
+group 'com.tomgs'
+version '1.0-SNAPSHOT'
+
+publishing {
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            //url = layout.buildDirectory.dir('repo')
+            // Snapshot and release repositories
+            //def releasesRepoUrl = layout.buildDirectory.dir('repos/releases')
+            //def snapshotsRepoUrl = layout.buildDirectory.dir('repos/snapshots')
+            //url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            // Local repositories
+            url = uri('D:\\MavenRepository')
+        }
+    }
+}
+
+repositories {
+    maven {
+        url = uri('D:\\MavenRepository')
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        helloPlugin {
+            id = 'com.tomgs.hello'
+            implementationClass = 'com.tomgs.hello.plugin.HelloPlugin'
+        }
+
+        goodbyePlugin {
+            id = 'com.tomgs.goodbye'
+            implementationClass = 'com.tomgs.hello.plugin.GoodbyePlugin'
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}

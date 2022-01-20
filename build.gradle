@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    // 将预编译的脚本插件应用到主项目
+    id 'java-library-convention'
+}
+
+group 'com.tomgs'
+version '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        url = uri('D:\\MavenRepository')
+    }
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}

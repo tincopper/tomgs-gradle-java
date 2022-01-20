@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'com.tomgs.hello' version "1.0-SNAPSHOT"
+//    id 'com.tomgs.goodbye' version "1.0-SNAPSHOT"
+}
+
+group 'com.tomgs'
+version '1.0-SNAPSHOT'
+
+// 自定义插件参数
+user {
+    name = 'Tomgs'
+    country = 'China'
+}
+
+repositories {
+    //本地maven仓库
+    maven { url 'D:\\MavenRepository' }
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+//    testImplementation 'junit:junit:4.13'
+}
+
+test {
+    useJUnitPlatform()
+}

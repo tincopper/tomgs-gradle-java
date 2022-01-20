@@ -1,0 +1,4 @@
+// 在预编译的脚本插件中应用外部插件
+plugins {
+    id 'com.bmuschko.docker-remote-api'
+}
