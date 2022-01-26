@@ -1,7 +1,9 @@
 package com.tomgs.hello.plugin;
 
+import org.gradle.api.Action;
 import org.gradle.api.Plugin;
 import org.gradle.api.Project;
+import org.gradle.api.Task;
 
 /**
  * HelloPlugin
@@ -26,7 +28,29 @@ public class HelloPlugin implements Plugin<Project> {
             // 设置task参数
             task.getUser().set(userExtension);
         });
-        project.getExtensions().add("user", UserExtension.class);
+        //project.getExtensions().add("user", UserExtension.class);
+
+        PrintUserTask printUserTask = project.getTasks().create("task_root", PrintUserTask.class, new Action<PrintUserTask>() {
+            @Override
+            public void execute(PrintUserTask printUserTask) {
+                // 设置参数
+                UserExtension userExtension = (UserExtension) (project.getExtensions().getByName("user"));
+                printUserTask.getUser().set(userExtension);
+            }
+        });
+
+        project.getTasks().create("task_name", SayHelloTask.class, new Action<SayHelloTask>() {
+            @Override
+            public void execute(SayHelloTask task) {
+                task.setGroup("groupName");
+                task.setDescription("Pushes created Docker image to the repository.");
+                // 设置依赖任务
+                task.dependsOn(printUserTask);
+                // 设置参数
+                UserExtension userExtension = (UserExtension) (project.getExtensions().getByName("user"));
+                task.getUser().set(userExtension);
+            }
+        });
     }
 
 }
